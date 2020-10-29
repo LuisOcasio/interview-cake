@@ -16,7 +16,7 @@
 
 //meeting times are not in order and coming from multiple teams
 
-data = [
+meetings = [
   { startTime: 0, endTime: 1 },
   { startTime: 3, endTime: 5 },
   { startTime: 4, endTime: 8 },
@@ -24,18 +24,10 @@ data = [
   { startTime: 9, endTime: 10 },
 ];
 
-//initializing hash table
-
-//1. create slots to store our meetings
-//There are 24hrs in a single day
-//Our slots can be represented as '1hr' slots meaning we need a total of 24 slots to store our meetings
-
-my_slots = new Array(24);
-
-console.log(my_slots);
-
-function mergeRanges(meetings) {
-  // Merge meetings ranges
-
-  return [];
-}
+const mergeRanges = (meetings) => {
+  const sortedTimes = meetings.sort((a, b) => {
+    return a.startTime - b.startTime || a.endTime - b.endTime;
+  });
+  console.log(sortedTimes);
+};
+mergeRanges(meetings);

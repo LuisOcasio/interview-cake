@@ -17,11 +17,9 @@ A good engineer knows how to strike the right balance between space, implementat
 
 <!-- --Random Access Memory--(RAM) -->
 
-1. When code is executed our variables,numbers, strings, arrays, etc. are stored in 'RAM'
+1. When code is executed our variables, numbers, strings, arrays, etc. are stored in 'RAM'
 
 2. Ram has slots that are numbered. We refer to these slots as addresses.
 
 3. Each slot holds 8bits which equal '1 byte'.
    These bits are made of 1's and 0's
-
-4.
