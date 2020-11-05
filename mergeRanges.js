@@ -24,10 +24,36 @@ meetings = [
   { startTime: 9, endTime: 10 },
 ];
 
+//With our times being sorted we can conclude which times can be merged
+//0,1 - 3,12
+
 const mergeRanges = (meetings) => {
-  const sortedTimes = meetings.sort((a, b) => {
-    return a.startTime - b.startTime || a.endTime - b.endTime;
+  const meetingsCopy = JSON.parse(JSON.stringify(meetings)); //allows data to/from a web server since it is converted to a string
+
+  //Sorted meetings
+  const sortedMeetings = meetingsCopy.sort((a, b) => {
+    return a.startTime - b.startTime;
   });
-  console.log(sortedTimes);
+
+  // MergedMeetings
+  const mergedMeetings = [sortedMeetings[0]];
+
+  //Iterate our sorted meetings
+  sortedMeetings.map((e, i) => {
+    const currentMeeting = sortedMeetings[i];
+    const lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1];
+
+    if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
+      lastMergedMeeting.endTime = Math.max(
+        lastMergedMeeting.endTime,
+        currentMeeting.endTime
+      );
+    } else {
+      // Add the current meeting since it doesn't overlap
+      mergedMeetings.push(currentMeeting);
+    }
+  });
+  return mergedMeetings;
 };
-mergeRanges(meetings);
+
+console.log(mergeRanges(meetings));
